@@ -11,7 +11,7 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
 ###### 需要日志收集的服务 pom.xml添加依赖:
    ```  
         <dependency>
-            <groupId>com.learn</groupId>
+            <groupId>com.github.clockworm</groupId>
             <artifactId>logback-kafka</artifactId>
             <version>0.0.1</version>
         </dependency>
