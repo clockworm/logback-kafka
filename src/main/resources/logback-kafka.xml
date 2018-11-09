@@ -2,9 +2,9 @@
     <included>
      <property name="KAFKA_LOG_HOME" value="/data/logs/kafka" />
      <!-- pom.xml 该模块依赖
-     	<dependency>
-			<groupId>com.cbest</groupId>
-			<artifactId>log-kafka-module</artifactId>
+     		<dependency>
+			<groupId>com.learn</groupId>
+			<artifactId>logback-kafka</artifactId>
 			<version>0.0.1</version>
 		</dependency> 
 	-->
