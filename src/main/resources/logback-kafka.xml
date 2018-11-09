@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+    <included>
+     <property name="KAFKA_LOG_HOME" value="/data/logs/kafka" />
+     <!-- pom.xml 该模块依赖
+     	<dependency>
+			<groupId>com.cbest</groupId>
+			<artifactId>log-kafka-module</artifactId>
+			<version>0.0.1</version>
+		</dependency> 
+	-->
+     <!-- application.properties 添加kafka.servers和spring.application.name属性-->
+     <!-- 需要日志收集的服务 添加该文件至工程目录src/mian/resources/文件夹下 -->
+     <!-- logback引入该xml文件<include resource="logback-kafka.xml"/>  -->
+	 <springProperty scope="context" name="servers" source="kafka.servers"/>
+	 <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <appender name="KAFKA-LOG-ERROR"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${KAFKA_LOG_HOME}/error.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%L] : %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="KAFKA-LOG-INFO"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${KAFKA_LOG_HOME}/info.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%L] : %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <logger name="kafkaSendLog" level="INFO" additivity="false"> 
+        <appender-ref ref="KAFKA-LOG-INFO" /> 
+        <appender-ref ref="KAFKA-LOG-ERROR" /> 
+    </logger>
+    
+    <appender name="KAFKA"  class="com.cbest.log.appender.KafkaAppender">
+    	<topic>${springAppName:-}</topic>
+    	<servers>${servers:-}</servers>
+    	<acks>1</acks>
+		<retries>0</retries>
+		<batchSize>4096</batchSize>
+		<linger>1</linger>
+		<bufferMemory>409600</bufferMemory>
+		<enabledLog>true</enabledLog>
+		<kafkaLogger>kafkaSendLog</kafkaLogger>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+        	<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%L] : %msg</pattern>
+        </layout>
+    </appender>
+    
+    <root level="INFO">
+        <appender-ref ref="KAFKA" />
+    </root>
+   </included>
