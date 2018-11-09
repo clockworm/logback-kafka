@@ -52,7 +52,7 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
 ### kafka推送日志记录组件logger名
 `<kafkaLogger>kafkaSendLog</kafkaLogger>`
 
-## kafka推送日志记录logger组件默认配置:
+## kafka推送日志记录logger组件源码配置:
 ```
     <appender name="KAFKA-LOG-ERROR"  class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
