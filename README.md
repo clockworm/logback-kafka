@@ -1,12 +1,8 @@
 # logback-kafka
 logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的形式,进行依赖管理
-即下即用,简单配置.使用方法详见如下:
+即下即用,简单配置.
 
-# 下载后
-### cd 当前项目(logback-kafka)根目录下 进行打包命令:
-### mvn clean install
-
-# 使用
+# 使用方法详见如下:
 ### 第一步:
 ###### 需要日志收集的服务 pom.xml添加依赖:
    ```  
