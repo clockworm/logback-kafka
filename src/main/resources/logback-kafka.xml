@@ -50,7 +50,7 @@
         <appender-ref ref="KAFKA-LOG-ERROR" /> 
     </logger>
     
-    <appender name="KAFKA"  class="com.cbest.log.appender.KafkaAppender">
+    <appender name="KAFKA"  class="com.learn.log.appender.KafkaAppender">
     	<topic>${springAppName:-}</topic>
     	<servers>${servers:-}</servers>
     	<acks>1</acks>
