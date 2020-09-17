@@ -10,6 +10,8 @@
 
 	<name>logback-kafka</name>
 	<description>日志发送kafka组件</description>
+	<url>https://github.com/clockworm/logback-kafka</url>
+	
 	<developers>
 		<developer>
 			<name>tangbiao</name>
