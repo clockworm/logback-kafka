@@ -43,7 +43,7 @@
         <appender-ref ref="KAFKA-LOG-ERROR" /> 
     </logger>
     
-    <appender name="KAFKA"  class="com.cbest.log.appender.KafkaAppender">
+    <appender name="KAFKA"  class="io.github.clockworm.appender.KafkaAppender">
     	<topic>io_github_clockworm_${projectGroupName:-single}_${springAppName:-}</topic>
     	<servers>${servers:-}</servers>
     	<acks>1</acks>
