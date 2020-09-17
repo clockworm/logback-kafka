@@ -2,9 +2,9 @@
     <included>
      <property name="KAFKA_LOG_HOME" value="/data/logs/middle/kafka" />
      <!-- <springProperty></springProperty> -->
-	 <springProperty scope="context" name="servers" source="cbest.middle.kafka.servers"/>
-	 <springProperty scope="context" name="springAppName" source="cbest.middle.kafka.project-app-name"/>
-	 <springProperty scope="context" name="projectGroupName" source="cbest.middle.kafka.project-group-name"/>
+	 <springProperty scope="context" name="servers" source="io.github.clockworm.middle.logback.kafka-servers"/>
+	 <springProperty scope="context" name="springAppName" source="io.github.clockworm.middle.logback.project-app-name"/>
+	 <springProperty scope="context" name="projectGroupName" source="io.github.clockworm.middle.logback.project-group-name"/>
 	 
     <appender name="KAFKA-LOG-ERROR"  class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -44,7 +44,7 @@
     </logger>
     
     <appender name="KAFKA"  class="com.cbest.log.appender.KafkaAppender">
-    	<topic>cbest_middle_${projectGroupName:-single}_${springAppName:-}</topic>
+    	<topic>io_github_${projectGroupName:-single}_${springAppName:-}</topic>
     	<servers>${servers:-}</servers>
     	<acks>1</acks>
 		<retries>0</retries>
