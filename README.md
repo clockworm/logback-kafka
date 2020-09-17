@@ -19,7 +19,7 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
         io.github.clockworm.middle.logback.project-app-name=服务名               #(注意不允许带下划线或其他特殊符号  服务名  比如:gateway)
         io.github.clockworm.middle.logback.kafka-servers=xxx.xxx.xxx.xxx:9092    #(kafka地址:端口)
 ### 第三步:
-######   通过maven管理查看源码打开logback-kafka目录下的src/mian/resources/文件夹下logback-kafka.xml配置文件
+######   通过maven管理查看源码打开logback-kafka包的logback-kafka.xml配置文件
 ######   将其拷贝至需要日志收集自身服务的src/mian/resources/目录下
 
 ### 第四步:
