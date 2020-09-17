@@ -21,7 +21,7 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
   ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `注: 以上赋值不允许带下划线或其他特殊符号 错误赋值示例: _+!@#$%^&*()`
 ### 第三步:
 ######   通过maven管理查看源码打开logback-kafka包的logback-kafka.xml配置文件
-######   将其拷贝至需要自身服务的src/mian/resources/目录下
+######   将logback-kafka.xml拷贝至需要自身服务的src/mian/resources/目录下
 
 ### 第四步:
 ######   自身服务的logback.xml或logback-spring.xml,添加:
