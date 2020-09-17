@@ -18,7 +18,7 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
         io.github.clockworm.middle.logback.project-group-name=项目组名          ######(项目组名 比如:cbest-bee)
         io.github.clockworm.middle.logback.project-app-name=服务名              ######(服务名  比如:gateway)
         io.github.clockworm.middle.logback.kafka-servers=xxx.xxx.xxx.xxx:9092   ######(kafka地址:端口)
-<font color="red">注: 以上赋值不允许带下划线或其他特殊符号 错误赋值示例: _+!@#$%^&*()</font>
+- ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `注: 以上赋值不允许带下划线或其他特殊符号 错误赋值示例: _+!@#$%^&*()`
 ### 第三步:
 ######   通过maven管理查看源码打开logback-kafka包的logback-kafka.xml配置文件
 ######   将其拷贝至需要自身服务的src/mian/resources/目录下
