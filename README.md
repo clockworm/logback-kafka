@@ -7,16 +7,17 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
 ###### 需要日志收集的服务 pom.xml添加依赖:
    ```  
         <dependency>
-            <groupId>com.cbest.middle</groupId>
+            <groupId>io.github.clockworm</groupId>
             <artifactId>logback-kafka</artifactId>
             <version>0.0.1</version>
         </dependency>
    ```
 #
 ### 第二步:
-###### application.properties 添加kafka.servers和spring.application.name属性:
-        spring.application.name=order    #(服务名将作为本服务的日志的topic)
-        kafka.servers=127.0.0.1:9092     #(kafka地址:端口)
+###### application.properties 添加属性:
+        io.github.clockworm.middle.logback.project-group-name=项目组名           #(注意不允许带下划线或其他特殊符号 项目组名 比如:cbest-bee)
+        io.github.clockworm.middle.logback.project-app-name=服务名               #(注意不允许带下划线或其他特殊符号  服务名  比如:gateway)
+        io.github.clockworm.middle.logback.kafka-servers=xxx.xxx.xxx.xxx:9092    #(kafka地址:端口)
 ### 第三步:
 ######   通过maven管理查看源码打开logback-kafka目录下的src/mian/resources/文件夹下logback-kafka.xml配置文件
 ######   将其拷贝至需要日志收集自身服务的src/mian/resources/目录下
