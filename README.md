@@ -24,9 +24,8 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
 ######   将其拷贝至需要自身服务的src/mian/resources/目录下
 
 ### 第四步:
-######   logback.xml或logback-spring.xml,添加:
+######   自身服务的logback.xml或logback-spring.xml,添加:
        <include resource="logback-kafka.xml"/>
-###### 引入copy的logback-kafka.xml文件进行加载.
 
 ### 第五步:
 ######   集成完毕,启动项目
