@@ -4,7 +4,7 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
 
 # 使用方法详见如下:
 ### 第一步:
-###### 需要日志收集的服务 pom.xml添加依赖:
+###### 需要日志推送的服务 pom.xml添加依赖:
    ```  
         <dependency>
             <groupId>io.github.clockworm</groupId>
@@ -29,3 +29,5 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
 
 ### 第五步:
 ######   集成完毕,启动项目
+### 彩蛋:
+######   日志收集服务logback-loggrab项目,将于近期开源,感谢关注该项目的所有开发者。
