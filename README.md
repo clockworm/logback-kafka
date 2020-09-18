@@ -9,7 +9,7 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
         <dependency>
             <groupId>io.github.clockworm</groupId>
             <artifactId>logback-kafka</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </dependency>
    ```
 #
