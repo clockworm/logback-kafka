@@ -28,7 +28,7 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
              `-- io.github.clockworm
              `-- META-INF
              `-- logback-kafka.xml
-######   将logback-kafka.xml拷贝至自身服务的src/mian/resources/目录下:
+######   将logback-kafka.xml拷贝至自身服务的src/main/resources/目录下:
          |src/main/resources
          `-- application.properties
          `-- logback.xml
