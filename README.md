@@ -32,7 +32,7 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
      `src/main/resources
          `-- application.properties
          `-- logback.xml
-         `-- logback-kafka-x.x.x.jar
+         `-- logback-kafka.xml
 ### 第四步:
 ######   自身服务的logback.xml或logback-spring.xml,引入logback-kafka.xml:
        <?xml version="1.0" encoding="UTF-8" ?>
