@@ -20,8 +20,23 @@ logback结合kafka实现日志推送,该项目抽离成module,方便以jar包的
         io.github.clockworm.middle.logback.kafka-servers=xxx.xxx.xxx.xxx:9092   ######(kafka地址:端口)
   ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `注: 以上赋值不允许带下划线或其他特殊符号 错误赋值示例: _+!@#$%^&*()`
 ### 第三步:
-######   通过maven管理查看源码打开logback-kafka包的logback-kafka.xml配置文件
-######   将logback-kafka.xml拷贝至自身服务的src/mian/resources/目录下
+######   通过maven管理查看源码打开logback-kafka包的logback-kafka.xml配置文件:
+         ```
+         Maven Dependencies
+         |-- xx.jar
+         |-- xx.jar
+         `-- logback-kafka-x.x.x.jar
+             `-- io.github.clockworm
+             `-- META-INF
+             `-- logback-kafka.xml
+         ```
+######   将logback-kafka.xml拷贝至自身服务的src/mian/resources/目录下:
+       ```
+         |src/main/resources
+         `-- application.properties
+         `-- logback.xml
+         `-- logback-kafka-x.x.x.jar
+       ```
 
 ### 第四步:
 ######   自身服务的logback.xml或logback-spring.xml,添加:
