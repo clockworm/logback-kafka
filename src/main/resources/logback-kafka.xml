@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" ?>   
-    <included>
-     <property name="KAFKA_LOG_HOME" value="/data/logs/middle/kafka" />
-     <!-- <springProperty></springProperty> -->
-	 <springProperty scope="context" name="servers" source="io.github.clockworm.middle.logback.kafka-servers"/>
-	 <springProperty scope="context" name="springAppName" source="io.github.clockworm.middle.logback.project-app-name"/>
-	 <springProperty scope="context" name="projectGroupName" source="io.github.clockworm.middle.logback.project-group-name"/>
-	 
+<?xml version="1.0" encoding="UTF-8" ?>
+<included>
+    <property name="KAFKA_LOG_HOME" value="/data/logs/middle/kafka" />
+
+    <springProperty scope="context" name="servers" source="io.github.clockworm.middle.logback.kafka-servers"/>
+    <springProperty scope="context" name="springAppName" source="io.github.clockworm.middle.logback.project-app-name"/>
+    <springProperty scope="context" name="projectGroupName" source="io.github.clockworm.middle.logback.project-group-name"/>
+    <springProperty scope="context" name="logPattern" source="io.github.clockworm.middle.logback.log-pattern"/>
+
+
     <appender name="KAFKA-LOG-ERROR"  class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
@@ -18,10 +20,11 @@
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} [%L] : %msg%n</pattern>
+            <!--         <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} [%L] : %msg%n</pattern>-->
+            <pattern>${logPattern}: %msg%n</pattern>
         </encoder>
     </appender>
-    
+
     <appender name="KAFKA-LOG-INFO"  class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
@@ -34,31 +37,33 @@
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} [%L] : %msg%n</pattern>
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} [%L] : %msg%n</pattern>-->
+            <pattern>${logPattern}: %msg%n</pattern>
         </encoder>
     </appender>
-    
-    <logger name="kafkaSendLog" level="INFO" additivity="false"> 
-        <appender-ref ref="KAFKA-LOG-INFO" /> 
-        <appender-ref ref="KAFKA-LOG-ERROR" /> 
+
+    <logger name="kafkaSendLog" level="INFO" additivity="false">
+        <appender-ref ref="KAFKA-LOG-INFO" />
+        <appender-ref ref="KAFKA-LOG-ERROR" />
     </logger>
-    
+
     <appender name="KAFKA"  class="io.github.clockworm.appender.KafkaAppender">
-    	<topic>io_github_clockworm_${projectGroupName:-single}_${springAppName:-}</topic>
-    	<servers>${servers:-}</servers>
-    	<acks>1</acks>
-		<retries>0</retries>
-		<batchSize>4096</batchSize>
-		<linger>1</linger>
-		<bufferMemory>409600</bufferMemory>
-		<enabledLog>false</enabledLog>
-		<kafkaLogger>kafkaSendLog</kafkaLogger>
+        <topic>io_github_clockworm_${projectGroupName:-single}_${springAppName:-}</topic>
+        <servers>${servers:-}</servers>
+        <acks>1</acks>
+        <retries>0</retries>
+        <batchSize>4096</batchSize>
+        <linger>1</linger>
+        <bufferMemory>409600</bufferMemory>
+        <enabledLog>false</enabledLog>
+        <kafkaLogger>kafkaSendLog</kafkaLogger>
         <layout class="ch.qos.logback.classic.PatternLayout">
-        	<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{X-B3-TraceId},%X{X-B3-SpanId}] %logger{50} [%L] : %msg</pattern>
+            <!--	<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{X-B3-TraceId},%X{X-B3-SpanId}] %logger{50} [%L] : %msg</pattern>-->
+            <pattern>${logPattern}: %msg</pattern>
         </layout>
     </appender>
-    
+
     <root level="INFO">
         <appender-ref ref="KAFKA" />
     </root>
-   </included>
+</included>
